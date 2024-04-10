@@ -5,13 +5,6 @@ let recording = false; // boolean state recording or not
 // random number
 let randomNumber = Math.floor(Math.random() * 1000);
 
-// set number, total 5 sets, local storage
-let set_number = localStorage.getItem('set_number');
-if (set_number === null) {
-    set_number = Math.floor(Math.random() * 5);
-    localStorage.setItem('set_number', set_number);
-}
-
 // counter, local storage
 let counter = localStorage.getItem('counter');
 if (counter === null) {
@@ -30,9 +23,10 @@ const question = document.getElementById('question');
 // id parameter
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
+const set_number = urlParams.get('set_number');
 
 console.log(id);
-
+console.log(set_number);
 
 // ----------------------------------------------------------------------------------
 
@@ -206,8 +200,8 @@ function submitRecording() {
 
           // if counter is 5, redirect to the next page
           if (counter === 5) {
-              localStorage.removeItem('set_number');
               localStorage.removeItem('counter');
+              localStorage.removeItem('set_number');
               window.location.href = `thankyou.html?id=${id}`;
           }
 
