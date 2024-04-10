@@ -185,16 +185,16 @@ function submitRecording() {
   }
 
   // Combine all recorded chunks into a single blob
-  const blob = new Blob(recordedChunks, { type: 'video/webm' });
+  const blob = new Blob(recordedChunks, { type: 'video/mp4' });
 
   // convert blob to file
-  const file = new File([blob], 'recording.webm', { type: 'video/webm' });
+  const file = new File([blob], 'recording.mp4', { type: 'video/mp4' });
 
   // Create a FormData object to send the video blob
   const formData = new FormData();
 
   folder_name = id + " (" + set_number + ")"; // folder name is id + set number
-  file_name = set_number + "_" + counter + "_" + randomNumber + ".webm";
+  file_name = set_number + "_" + counter + "_" + randomNumber + ".mp4";
 
   console.log(folder_name);
   console.log(file_name);
