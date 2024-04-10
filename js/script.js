@@ -17,7 +17,9 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     .then(response => response.json())
     .then(data => {
         if (data.message == "success") {
-            window.location.href = `record.html?id=${id}`;
+            // random number between 0 to 4 inclusive
+            var randomNumber = Math.floor(Math.random() * 5);
+            window.location.href = `record.html?id=${id}&set_number=${randomNumber}`;
         } else {
             alert('Invalid username or password');
         }
