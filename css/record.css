@@ -40,6 +40,13 @@ body {
     text-align: center;
     background-color: linear-gradient(to right, #000428, #004e92); /* Optional background for the container */
     border-radius: 5px; /* Optional rounded corners */
+    font-size: x-large;
+}
+
+/*p with id message*/
+#mess {
+    color: #ffffff;
+    font-size: 1em;
 }
 
 h2 {
@@ -55,6 +62,8 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    /* set size of button */
+    font-size: 1.0em;
 }
 
 button:hover {

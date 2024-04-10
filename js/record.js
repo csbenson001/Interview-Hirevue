@@ -14,11 +14,12 @@ if (counter === null) {
 
 const liveFeed = document.getElementById('liveFeed');
 const startRecordingButton = document.getElementById('startRecording');
-const submit = document.getElementById('submit');
 const previewVideo = document.getElementById('preview');
 const timerDisplay = document.getElementById('timer');
 
 const question = document.getElementById('question');
+
+const submit = document.getElementById('submit');
 
 // id parameter
 const urlParams = new URLSearchParams(window.location.search);
@@ -75,6 +76,9 @@ function startRecording() {
             // state recording
             recording = true;
 
+            // color change to red
+            startRecordingButton.style.backgroundColor = 'red';
+
           mediaRecorder = new MediaRecorder(recordingStream);
 
           mediaRecorder.ondataavailable = function(event) {
@@ -122,8 +126,11 @@ function stopRecording() {
   startRecordingButton.removeEventListener('click', stopRecording);
   startRecordingButton.addEventListener('click', startRecording);
 
-    // state recording
-    recording = false;
+  // color change back to blue
+  startRecordingButton.style.backgroundColor = '#007bff';
+
+  // state recording
+  recording = false;
 }
 
 // Function to update timer display
@@ -138,7 +145,13 @@ function updateTimerDisplay() {
 function submitRecording() {
   // Disable submit button and change its text to "Wait"
   submit.disabled = true;
-  submit.textContent = 'Wait...';
+  submit.textContent = 'Uploading...';
+
+  //color change of submit button to green
+  submit.style.backgroundColor = 'green';
+
+  //block the start recording button
+  startRecordingButton.disabled = true;
 
   // state recording not allowed to submit
   if (recording) {
@@ -146,6 +159,13 @@ function submitRecording() {
       // Re-enable submit button and restore its text
       submit.disabled = false;
       submit.textContent = 'Submit';
+
+      // color change of submit button to blue
+      submit.style.backgroundColor = '#007bff';
+
+      // Re-enable start recording button
+      startRecordingButton.disabled = false;
+
       return;
   }
 
@@ -155,6 +175,12 @@ function submitRecording() {
       // Re-enable submit button and restore its text
       submit.disabled = false;
       submit.textContent = 'Submit';
+
+      // color change of submit button to blue
+      submit.style.backgroundColor = '#007bff';
+
+      // Re-enable start recording button
+      startRecordingButton.disabled = false;
       return;
   }
 
@@ -162,7 +188,7 @@ function submitRecording() {
   const blob = new Blob(recordedChunks, { type: 'video/webm' });
 
   // convert blob to file
-  const file = new File([blob], 'video.webm', { type: 'video/webm' });
+  const file = new File([blob], 'recording.webm', { type: 'video/webm' });
 
   // Create a FormData object to send the video blob
   const formData = new FormData();
@@ -233,9 +259,14 @@ function submitRecording() {
       // Re-enable submit button and restore its text
       submit.disabled = false;
       submit.textContent = 'Submit';
+
+      // color change of submit button to blue
+      submit.style.backgroundColor = '#007bff';
+
+      // Re-enable start recording button
+      startRecordingButton.disabled = false;
   });
 }
-
 
 // function to update question
 function updateQuestion() {
