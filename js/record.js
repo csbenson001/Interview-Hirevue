@@ -206,6 +206,7 @@ function submitRecording() {
 
           // if counter is 5, redirect to the next page
           if (counter === 5) {
+              localStorage.removeItem('set_number');
               localStorage.removeItem('counter');
               window.location.href = `thankyou.html?id=${id}`;
           }
