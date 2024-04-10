@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <link rel="stylesheet" href="css/thankyou.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Thank You!</h1>
+        <p>Dear <span id="name"></span>,</p>
+        <p>Thank you for your support and cooperation.</p>
+        <p>We appreciate your contribution.</p>
+        <a href="index.html" class="btn">Back to Home</a>
+    </div>
+
+    <script>
+        // Extracting name from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('id');
+
+        // Setting the extracted name
+        document.getElementById('name').innerText = name;
+    </script>
+</body>
+</html>
